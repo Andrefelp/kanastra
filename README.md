@@ -16,7 +16,7 @@ Certifique-se de ter os seguintes programas instalados:
 1. Clone este repositório:
 
    ```bash
-   git clone <URL_DO_REPOSITORIO>
+   git clone https://github.com/Andrefelp/kanastra
    cd kanastra
     ```
 
@@ -32,8 +32,19 @@ Certifique-se de ter os seguintes programas instalados:
    docker compose exec app bash
     ```
 
-4. Execute as migrações do banco de dados:
-
+    3.1 Execute as migrations do banco de dados:
+    
+    ```bash
+    php artisan migrate
+    ```
+       
+    3.2 Faça a instalação das dependências
+    
+    ```bash
+    composer install
+    ```
+    
+    3.3 Para os testes unitários/feature:
    ```bash
-   php artisan migrate
+    php artisan test
     ```
