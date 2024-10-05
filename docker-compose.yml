@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kanastra_app
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    networks:
+      - kanastra-network
+    depends_on:
+      - db
+    command: php -S 0.0.0.0:8000 -t public
+    ports:
+        - "8000:8000"
+
+  db:
+    image: mysql:5.7
+    container_name: kanastra_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - kanastra-network
+
+volumes:
+  db_data:
+
+networks:
+  kanastra-network:
+    driver: bridge
