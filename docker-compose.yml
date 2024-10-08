@@ -6,6 +6,7 @@ services:
     container_name: kanastra_app
     volumes:
       - ./:/var/www
+      - ./php.ini:/usr/local/etc/php/php.ini
     working_dir: /var/www
     networks:
       - kanastra-network
@@ -25,6 +26,8 @@ services:
       MYSQL_PASSWORD: password
     volumes:
       - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
     networks:
       - kanastra-network
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -41,5 +42,15 @@ class Boleto extends Model
     public function scopeByCliente($query, $cliente_id)
     {
         $query->where('cliente_id', $cliente_id);
+    }
+
+    public function getValorFormatadoAttribute()
+    {
+        return 'R$ ' . number_format($this->valor, 2, ',', '.');
+    }
+
+    public function getDataVencimentoFormatadaAttribute()
+    {
+        return $this->data_vencimento->format('d/m/Y');
     }
 }

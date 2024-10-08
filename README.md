@@ -48,3 +48,26 @@ Certifique-se de ter os seguintes programas instalados:
    ```bash
     php artisan test
     ```
+   
+    3.4 Para gerar o token de chamada na API:
+   ```bash
+    php artisan create:user
+    ```
+   
+    Copiar a chave da linha "Token de API".
+    Exemplo: 333|fXRgBaVThLnST2JOKquDwKpp1wtjsImTBE5J9veLad174e1e
+
+
+4. Para testar a chamada de API, use o software de sua escolha (postman, insomnia, etc)
+    
+    4.1 Rota para acessar:
+        POST: http://localhost:8000/api/importacao-boletos-csv
+        
+        Inserir o header:
+        Accept, com o value application/json
+
+        No Auth:
+        inserir o Bearer Token, com o token gerado no passo anterior
+    
+        No Body:
+        inserir uma linha com o nome file, e anexar ao lado o .csv desejado

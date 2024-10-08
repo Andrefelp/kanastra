@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Support\Facades\Log;
 
 class DocumentoValido implements ValidationRule
 {
@@ -12,10 +13,12 @@ class DocumentoValido implements ValidationRule
         $documento = preg_replace('/\D/', '', $value);
 
         if (strlen($documento) == 11) {
+
             if (!$this->validarCPF($documento)) {
                 $fail('O CPF é inválido.');
             }
         } elseif (strlen($documento) == 14) {
+
             if (!$this->validarCNPJ($documento)) {
                 $fail('O CNPJ é inválido.');
             }

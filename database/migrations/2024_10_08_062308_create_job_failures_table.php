@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clientes', function (Blueprint $table) {
-            $table->id()->index();
-            $table->string('nome');
-            $table->string('documento', 18)->unique()->index();
-            $table->string('email')->nullable();
+        Schema::create('job_failures', function (Blueprint $table) {
+            $table->id();
+            $table->string('job_name');
+            $table->string('identifier');
+            $table->string('identifier_type');
+            $table->text('error');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('job_failures');
     }
 };

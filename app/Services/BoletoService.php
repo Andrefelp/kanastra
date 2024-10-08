@@ -9,31 +9,28 @@ use Illuminate\Validation\ValidationException;
 
 class BoletoService {
 
-    public function findOrCreate(array $data): Boleto {
+    public function create(array $data): Boleto
+    {
         $this->validate($data);
 
-        $boleto = Boleto::byUuid($data['uuid'])->first();
-
-        if(!$boleto) {
-            $boleto = Boleto::create([
-                'uuid'              => $data['uuid'],
-                'cliente_id'        => $data['cliente_id'],
-                'valor'             => $data['valor'],
-                'data_vencimento'   => $data['data_vencimento'],
-                'created_at'        => Carbon::now()
-            ]);
-        }
+        $boleto = Boleto::create([
+            'uuid' => $data['uuid'],
+            'cliente_id' => $data['cliente_id'],
+            'valor' => $data['valor'],
+            'data_vencimento' => $data['data_vencimento'],
+            'created_at' => Carbon::now()
+        ]);
 
         return $boleto;
     }
 
-    private function validate(array $data)
+    public function validate(array $data): void
     {
         $validator = Validator::make($data, [
             'uuid' => 'required|uuid|unique:boletos,uuid',
             'valor' => 'required|numeric|min:0.01',
             'data_vencimento' => 'required|date_format:Y-m-d',
-        ],[
+        ], [
             'uuid.unique'                   => 'O campo UUID informado já está cadastrado.',
             'uuid.required'                 => 'O campo UUID é obrigatório.',
             'uuid.uuid'                     => 'O campo UUID deve ter um formato válido.',
