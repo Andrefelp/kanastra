@@ -20,36 +20,41 @@ Certifique-se de ter os seguintes programas instalados:
    cd kanastra
     ```
 
-2. Construa e inicie os conteiner's:
+2. Copiar o .env:
+    ```bash
+    cp .env.example .env
+    ```
+   
+3. Construa e inicie os conteiner's:
 
    ```bash
    docker compose up -d
     ```
 
-3. Acesse o contêiner do aplicativo:
+4. Acesse o contêiner do aplicativo:
 
    ```bash
    docker compose exec app bash
     ```
 
-    3.1 Execute as migrations do banco de dados:
+    4.1 Execute as migrations do banco de dados:
     
     ```bash
     php artisan migrate
     ```
        
-    3.2 Faça a instalação das dependências
+    4.2 Faça a instalação das dependências
     
     ```bash
     composer install
     ```
     
-    3.3 Para os testes unitários/feature:
+    4.3 Para os testes unitários/feature:
    ```bash
     php artisan test
     ```
    
-    3.4 Para gerar o token de chamada na API:
+    4.4 Para gerar o token de chamada na API:
    ```bash
     php artisan create:user
     ```
@@ -58,9 +63,9 @@ Certifique-se de ter os seguintes programas instalados:
     Exemplo: 333|fXRgBaVThLnST2JOKquDwKpp1wtjsImTBE5J9veLad174e1e
 
 
-4. Para testar a chamada de API, use o software de sua escolha (postman, insomnia, etc)
+5. Para testar a chamada de API, use o software de sua escolha (postman, insomnia, etc)
     
-    4.1 Rota para acessar:
+    5.1 Rota para acessar:
         POST: http://localhost:8000/api/importacao-boletos-csv
         
         Inserir o header:
