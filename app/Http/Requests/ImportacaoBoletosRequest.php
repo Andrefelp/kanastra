@@ -14,7 +14,7 @@ class ImportacaoBoletosRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required|mimes:csv',
+            'file' => 'required|extensions:csv',
         ];
     }
 
@@ -22,7 +22,7 @@ class ImportacaoBoletosRequest extends FormRequest
     {
         return [
             'file.required' => 'É obrigatório inserir um arquivo.',
-            'file.mimes' => 'O arquivo deve ser do formato CSV.',
+            'file.extensions' => 'O arquivo deve ser do formato CSV.',
         ];
     }
 }
